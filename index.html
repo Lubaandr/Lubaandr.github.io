@@ -1,0 +1,492 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+<style>
+    /*
+    #info {
+        width: 200px;
+        height: 160px;
+        border: 1px solid black;
+    }
+    */
+    /*
+    #trueBlock, #falseBlock {
+        border: 1px solid black;
+        height: 200px;
+        width: 200px;
+        background-color: green;
+        display: inline-block;
+        text-align: center;
+        font-size: 30px;
+        margin-left: 25%;
+    }
+    */
+    /*.correctAnswersParent, .incorrectAnswersParent {
+        border: 1px solid black;
+        height: 180px;
+        width: 180px;
+        background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb4EpYiH7Kv-fSYx5M9Z3e4rXJUV8X9fGWLA&usqp=CAU);
+        display: inline-block;
+        text-align: center;
+        font-size: 30px;
+        margin-left: 25%;
+        color: mediumblue ;
+    }*/
+    .task {
+        text-align: center;
+        width: 600px;
+        font-size: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 45px;
+        margin-top: 25px;
+        /*background: url(https://image.shutterstock.com/image-vector/vector-seamless-pattern-background-footprint-260nw-1028798005.jpg);*/
+    }
+    .task1 {
+
+        width: 670px;
+        height: 60px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 45px;
+        margin-top: 25px;
+        background: url(https://x-lines.ru/letters/i/cyrillicfancy/0198/b5176f/40/0/4nppbcgozmem7wfirdea8wcn4n3pbpqtodempwfw4n47bxqozdemkegosmemmwcy4n67bxt9.png);
+        /*background: url(https://x-lines.ru/letters/i/cyrillicdreamy/0694/c718ec/40/1/4nppbcgozmem7wfirdea8wcn4n3pbpqtodempwfw4n47bxqozdemkegosmemmwcy4n67bxt9.png);*/
+    }
+    .pictureAnswer {
+        
+        width: 12%;
+        height: 25%;
+        float: right;
+        margin-right: 20px;
+        position: relative;
+        margin-left: 0!important;
+        background-size: cover;
+        
+
+        transition: transform 0.5s linear;
+    }
+    .pictureAnswer:hover {
+        transform: rotate(360deg);
+    }
+    .pictureAnswer.correct {
+        background-color: blueviolet;
+        background: url(пп.png);
+        background-size: cover;
+    }
+    .pictureAnswer.incorrect {
+        background-color: aqua;
+        background-image: url(п1.jpg);
+        background-size: cover;
+    }
+    .question > div {
+        display: inline-block;
+        margin-left: 10%;
+        margin-top: 30px;
+      
+    }
+    .answerParent {
+        width: 25%;
+    }
+    
+    video {
+        width: 100%;
+        height: auto;
+        max-height: 100%;
+        
+    }
+    .questionButton {
+        display: block;
+        position: relative;
+        left: 50%;
+        transform: translate(-50%, 0);
+        margin-top: 2%;
+        margin-bottom: 2%;
+        width: 110px;
+        background-color: aquamarine;
+        border-radius: 12px;
+        background-image: url(ц.jpg);
+        font-size: 23px;
+    }
+   
+  
+    body {
+        /*background: url(https://img1.goodfon.ru/wallpaper/nbig/9/37/fon-yarkiy-cveta-raduzhnye.jpg);*/
+        /*background: url(https://avatanplus.com/files/resources/original/575c0853ef7ed1553f80880d.jpg); милая картинка*/
+        /*background: url(https://images8.alphacoders.com/429/thumb-1920-429927.jpg);*/
+       /* background: url(https://images1.fanpop.com/images/image_uploads/Pink-Panther-pink-color-897947_1024_768.jpg);*/
+       /*background: url(http://images6.fanpop.com/image/photos/41600000/Fd8BiD3-pink-panther-lovers-41601017-1920-1080.jpg);*/
+       /*background: url(https://funart.pro/uploads/posts/2020-04/thumbs/1586165862_5-p-rozovie-odnotonnie-foni-34.jpg);*/
+       background: url(pantera.png);
+        background-size: cover;
+        background-attachment: fixed;
+    } /*https://funart.pro/uploads/posts/2020-04/1587494934_7-p-yarkie-foni-21.jpg*/
+    h1 {
+        color: rgb(224, 13, 172);
+        font-size: 30px;
+        text-align: center;
+        background-color: antiquewhite;
+    }
+    #markContainer {
+        border: 1px solid black;
+        height: 500px;
+        width: 500px;
+        text-align: center;
+        background: url(https://image.freepik.com/free-vector/elegant-pink-watercolor-texture-background_1017-19540.jpg);
+        display: none;
+        text-align: center;
+        font-size: 35px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto auto;
+    }
+    #mark {
+        position: absolute;
+        height: 70px;
+        width: 100%;
+        text-align: center;
+        font-size: 35px;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto auto;
+    }
+   
+    .questionCounter {
+        font-size: 35px;
+        float: left;
+        border: 1 px solid blue;
+        color: darkmagenta;
+      
+    }
+    video {
+  border-radius: 50%;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+video::-webkit-media-controls-timeline {
+    display: none;
+}
+video::-webkit-media-controls-play-button {
+    display: none;
+}
+
+video::-webkit-media-controls-volume-slider {
+    display: none;
+}
+video::-webkit-media-controls-mute-button {
+    display: none;
+}
+</style>
+<script>
+const questionsData = [
+    { options: [
+        {correctAnswer: false, html: `<video controls><source src="мсв1.1.mp4"></video>`},
+        {correctAnswer: true, html: `<video controls><source src="мсв1.2.mp4"></video>`},
+    ], },
+    { options: [
+        {correctAnswer: false, html: `<video controls><source src="мсв2.1.mp4"></video>`},
+        {correctAnswer: true, html: `<video controls><source src="мсв2.2.mp4"></video>`},
+    ], }, 
+   { options: [
+        {correctAnswer: false, html: `<video controls><source src="мсв3.1.mp4"></video>`},
+        {correctAnswer: true, html: `<video controls><source src="мсв3.2.mp4"></video>`},
+    ], }, 
+    { options: [
+        {correctAnswer: false, html: `<video controls><source src="мсв4.1.mp4"></video>`},
+        {correctAnswer: true, html: `<video controls><source src="мсв4.2.mp4"></video>`},
+    ], }, 
+    { options: [
+        {correctAnswer: true, html: `<video controls><source src="мсв5.1.mp4"></video>`},
+        {correctAnswer: false, html: `<video controls><source src="мсв5.2.mp4"></video>`},
+    ], }, 
+   /* { options: [
+        {correctAnswer: true, html: `<video width="500px" height="400px" controls><source src="https://www.free-video-footage.com/wp-content/uploads/2018/05/free%20geometric%20video%20background%20008%201920%20x1080%20preview.mp4"></video>`},
+        {correctAnswer: false, html: `<video width="500px" height="400px" controls><source src="https://www.free-video-footage.com/wp-content/uploads/2018/05/free%20geometric%20video%20background%20009%201920%20x1080%20preview.mp4"></video>`},
+    ], }, 
+    { options: [
+        {correctAnswer: false, html: `<video width="500px" height="400px" controls><source src="https://www.free-video-footage.com/wp-content/uploads/2018/05/free%20globe%20video%20background%2001%201920%20x1080%20preview.mp4"></video>`},
+        {correctAnswer: true, html: `<video width="500px" height="400px" controls><source src="https://www.free-video-footage.com/wp-content/uploads/2018/05/free%20globe%20video%20background%20015%201920%20x1080%20preview.mp4"></video>`},
+    ], }, 
+    { options: [
+        {correctAnswer: false, html: `<video width="500px" height="400px" controls><source src="https://www.free-video-footage.com/wp-content/uploads/2018/05/free%20music%20video%20background%20010%201920%20x1080%20preview.mp4"></video>`},
+        {correctAnswer: true, html: `<video width="500px" height="400px" controls><source src="https://www.free-video-footage.com/wp-content/uploads/2018/05/free%20music%20video%20motion%20element%20002%201920%20x%201080%20preview.mp4"></video>`},
+    ], }, 
+    { options: [
+        {correctAnswer: true, html: `<video width="500px" height="400px" controls><source src="https://www.free-video-footage.com/wp-content/uploads/2018/04/free%20sport%20video%20background%20010%20preview.mp4"></video>`},
+        {correctAnswer: false, html: `<video width="500px" height="400px" controls><source src="https://www.free-video-footage.com/wp-content/uploads/2018/04/free%20travel%20video%20background%20001%20preview.mp4"></video>`},
+    ], }, 
+    { options: [
+        {correctAnswer: true, html: `<video width="500px" height="400px" controls><source src="https://www.free-video-footage.com/wp-content/uploads/2018/05/free%20sign%20video%20background%20004%201920%20x1080%20preview.mp4"></video>`},
+        {correctAnswer: false, html: `<video width="500px" height="400px" controls><source src="https://www.free-video-footage.com/wp-content/uploads/2018/05/free%20abstract%20video%20background%20030%201920%20x1080%20preview.mp4"></video>`},
+    ], },
+    { options: [ 
+        {correctAnswer: false, html: `<video width="500px" height="400px" controls><source src="ли1.1.mp4"></video>`},
+        {correctAnswer: true, html: `<video width="500px" height="400px" controls><source src="ли1.2.mp4"></video>`},
+    ], },
+    { options: [
+        {correctAnswer: true, html: `<video width="500px" height="400px" controls><source src="ли2.1.mp4"></video>`},
+        {correctAnswer: false, html: `<video width="500px" height="400px" controls><source src="ли2.2.mp4"></video>`},
+    ], }, 
+    { options: [
+        {correctAnswer: false, html: `<video width="500px" height="400px" controls><source src="https://www.free-video-footage.com/wp-content/uploads/2018/05/free%20abstract%20video%20background%20006%201920%20x1080%20preview.mp4?_=1"></video>`},
+        {correctAnswer: true, html: `<video width="500px" height="400px" controls><source src="https://www.free-video-footage.com/wp-content/uploads/2018/05/free%20abstract%20video%20background%20002%201920%20x1080%20preview.mp4?_=1"></video>`},
+    ], }, 
+    { options: [
+        {correctAnswer: false, html: `<video width="500px" height="400px" controls><source src="https://www.free-video-footage.com/wp-content/uploads/2018/05/free%20music%20video%20background%20008%201920%20x1080%20preview.mp4?_=1"></video>`},
+        {correctAnswer: true, html: `<video width="500px" height="400px" controls><source src="https://www.free-video-footage.com/wp-content/uploads/2018/05/free%20music%20video%20background%20009%201920%20x1080%20preview.mp4?_=1"></video>`},
+    ], }, 
+    { options: [
+        {correctAnswer: true, html: `<video width="500px" height="400px" controls><source src="https://www.free-video-footage.com/wp-content/uploads/2018/05/free%20music%20video%20motion%20element%20001%201920%20x%201080%20preview.mp4"></video>`},
+        {correctAnswer: false, html: `<video width="500px" height="400px" controls><source src="https://www.free-video-footage.com/wp-content/uploads/2018/05/free%20science%20video%20motion%20element%20001%201920%20x%201080%20preview.mp4"></video>`},
+    ], }, 
+    { options: [
+        {correctAnswer: true, html: `<video width="500px" height="400px" controls><source src="https://www.free-video-footage.com/wp-content/uploads/2018/05/free%20geometric%20video%20background%20008%201920%20x1080%20preview.mp4"></video>`},
+        {correctAnswer: false, html: `<video width="500px" height="400px" controls><source src="https://www.free-video-footage.com/wp-content/uploads/2018/05/free%20geometric%20video%20background%20009%201920%20x1080%20preview.mp4"></video>`},
+    ], }, 
+    { options: [
+        {correctAnswer: false, html: `<video width="500px" height="400px" controls><source src="https://www.free-video-footage.com/wp-content/uploads/2018/05/free%20globe%20video%20background%2001%201920%20x1080%20preview.mp4"></video>`},
+        {correctAnswer: true, html: `<video width="500px" height="400px" controls><source src="https://www.free-video-footage.com/wp-content/uploads/2018/05/free%20globe%20video%20background%20015%201920%20x1080%20preview.mp4"></video>`},
+    ], }, 
+    { options: [
+        {correctAnswer: false, html: `<video width="500px" height="400px" controls><source src="https://www.free-video-footage.com/wp-content/uploads/2018/05/free%20music%20video%20background%20010%201920%20x1080%20preview.mp4"></video>`},
+        {correctAnswer: true, html: `<video width="500px" height="400px" controls><source src="https://www.free-video-footage.com/wp-content/uploads/2018/05/free%20music%20video%20motion%20element%20002%201920%20x%201080%20preview.mp4"></video>`},
+    ], }, 
+    { options: [
+        {correctAnswer: true, html: `<video width="500px" height="400px" controls><source src="https://www.free-video-footage.com/wp-content/uploads/2018/04/free%20sport%20video%20background%20010%20preview.mp4"></video>`},
+        {correctAnswer: false, html: `<video width="500px" height="400px" controls><source src="https://www.free-video-footage.com/wp-content/uploads/2018/04/free%20travel%20video%20background%20001%20preview.mp4"></video>`},
+    ], }, 
+    { options: [
+        {correctAnswer: true, html: `<video width="500px" height="400px" controls><source src="https://www.free-video-footage.com/wp-content/uploads/2018/05/free%20sign%20video%20background%20004%201920%20x1080%20preview.mp4"></video>`},
+        {correctAnswer: false, html: `<video width="500px" height="400px" controls><source src="https://www.free-video-footage.com/wp-content/uploads/2018/05/free%20abstract%20video%20background%20030%201920%20x1080%20preview.mp4"></video>`},
+    ], },*/
+    
+];
+
+function main() {
+
+    //const div1 = document.getElementById('correctAnswers');
+    //const div2 = document.getElementById('incorrectAnswers');
+    const trueBlock = document.getElementById('correctAnswers');
+    const falseBlock = document.getElementById('incorrectAnswers');
+    const questions = document.getElementById('questions');
+    const mark = document.getElementById('mark');
+    // const info = document.getElementById('info');
+
+    let correctAnswers = 0;
+    let incorrectAnswers = 0;
+    let countQuestions = 0;
+    const maxQuestions = 10;
+
+    function playAudio() {
+        let audio=new Audio();
+        //audio.src="https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3";
+        audio.src="рп музыка.mp3";
+        audio.play();
+    }
+    function playFalseAudio() {
+        let falseAudio=new Audio();
+        falseAudio.src="ошибка.mp3";
+        falseAudio.play();
+    }
+    function update() {
+        trueBlock.innerHTML = correctAnswers;
+        falseBlock.innerHTML = incorrectAnswers;
+        if ((correctAnswers + incorrectAnswers) === countQuestions) {
+            const rating = getMark();
+            mark.innerHTML = 'Ваша оценка: ' + rating;
+            if (true) {
+                const btn = document.createElement('button');
+                btn.innerText = 'Попробовать снова';
+                btn.addEventListener('click', function() {
+                    mark.parentElement.style.display = "none";
+                    mark.innerHTML = '';
+                    questions.scrollIntoView();
+
+                    init();
+                    
+                });
+                mark.appendChild(btn);
+            }
+            mark.parentElement.style.display = "block";
+        }
+    }
+    function getParentWithClassName(child, parentClassName) {
+        if (!child || !parentClassName) return null;
+        if (child.classList.contains(parentClassName)) return child;
+        if (child === document.body) return document.body;
+        return getParentWithClassName(child.parentElement, parentClassName);
+    }
+
+    /** @param {Event} event */
+    function onButtonClick (event) {
+        /** @type {HTMLElement} */
+        const btn = event.target;
+        const result = btn.getAttribute('data-correct-answer');
+
+        
+        if (result) {
+            correctAnswers++;
+            // info.innerHTML = "верно";
+            playAudio();
+        } else {
+            incorrectAnswers++;
+            btn.style.background = "purple";
+            // info.innerHTML = "неверно";
+            playFalseAudio();
+        }
+
+        // clearInterval(info.timeoutid);
+        // const id = setTimeout(() => {
+        //     info.innerHTML = "1";
+        // }, 3000);
+        // info.timeoutid = id;
+
+        const buttons = getParentWithClassName(btn, 'question').querySelectorAll('button');
+
+        for (let i = 0; i < buttons.length; i++) {
+            const btn = buttons[i];
+            btn.disabled = true;
+            const correct = btn.getAttribute('data-correct-answer');
+            if (correct) {
+                btn.style.background = "yellow";
+            }
+        }
+
+        const picture = getParentWithClassName(btn, 'question').querySelector('.pictureAnswer');
+        if (result) {
+            picture.classList.add('correct');
+        }
+        else {
+            picture.classList.add('incorrect');
+        }
+
+        update();
+    }
+
+    function getMark() {
+        // 90%+ - 5
+        // 75%+ - 4
+        // 60%+ - 3
+        //  0%+ - 2
+        const percent = correctAnswers / countQuestions * 100;
+        if (percent >= 90) {return 5;}
+        if (percent >= 75) {return 4;}
+        if (percent >= 60) {return 3;}
+        else {return  2;}
+    }
+
+    function init() {
+        correctAnswers = 0;
+        incorrectAnswers = 0;
+        questions.innerHTML = '';
+        const data = [];
+
+        for (let i=0; i<maxQuestions; i++) {
+            if (data.length >= questionsData.length) break;
+            const idx = Math.floor(Math.random() * questionsData.length);
+            if (data.includes(questionsData[idx])) {
+                i--;
+            } else {
+                data.push(questionsData[idx]);
+            }
+        }
+        countQuestions = data.length;
+        
+
+        for (let i=0; i<data.length; i++) {
+            const question = document.createElement('div');
+            question.classList.add('question');
+
+            const counterDiv = document.createElement('div');
+            counterDiv.classList.add('questionCounter');
+            counterDiv.innerText = i + 1;
+            
+            question.appendChild(counterDiv);
+
+            for (let j=0; j<data[i].options.length; j++) {
+                if (!data[i].options[j].html) continue;
+
+                const option = document.createElement('div');
+                option.innerHTML = data[i].options[j].html;
+                option.classList.add("answerParent");
+
+                const btn = document.createElement('button');
+                btn.addEventListener('click', onButtonClick);
+                if (data[i].options[j].correctAnswer) {
+                    btn.setAttribute('data-correct-answer', "true");
+                }
+                btn.innerText = 'Ответить';
+                btn.classList.add('questionButton');
+                
+                option.appendChild(btn);
+
+                question.appendChild(option);
+            }
+            //🐰
+            const pictureAnswer = document.createElement('div');
+            pictureAnswer.classList.add('pictureAnswer');
+            question.appendChild(pictureAnswer);
+
+            questions.appendChild(question);
+        }
+        update();
+    }
+
+    init();
+}
+
+document.addEventListener('DOMContentLoaded', main);
+
+</script>
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm bg-warning navbar-light">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="карточки и счетчик1.html">Карточки</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="quiz.html">Викторина</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Теоретический материал</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">Прогресс</a>
+            </li>
+        </ul>
+    </nav>
+    <!--div id="trueBlock">Верно: </div-->
+    <!--div id="falseBlock">Неверно: </div-->
+    <!--div id="info"></div-->
+   <div class="correctAnswersParent">Верно: <span id="correctAnswers"></span></div>
+    <div class="incorrectAnswersParent">Неверно: <span id="incorrectAnswers"></span></div> 
+    <div class="task"><b></b>
+    <div class="task1"></div>
+    </div>
+    <!--div id="main">
+        <img src="https://i.pinimg.com/236x/1e/00/42/1e004202678ebb058e7247e06ff7eea6.jpg">
+        <div class="main1 main">
+            <img src="https://i.pinimg.com/236x/1e/00/42/1e004202678ebb058e7247e06ff7eea6.jpg">
+        </div>
+    </div-->
+        
+    <div id="questions">
+        
+    </div>
+    <div id="markContainer">
+        <div id="mark"></div>
+    </div>
+</body>
