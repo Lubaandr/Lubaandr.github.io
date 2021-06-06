@@ -334,14 +334,46 @@ function main() {
         const btn = event.target;
         const result = btn.getAttribute('data-correct-answer');
 
-        
+        const answer = getParentWithClassName(btn, 'answerParent');
+        const question = getParentWithClassName(btn, 'question');
+        const buttons = answer.querySelectorAll('button');
+
+        // answer.isCorrect
         if (result) {
+            answer.isCorrect = true;
+        } else {
+            answer.isCorrect = false;
+        }
+
+        for (let i = 0; i < buttons.length; i++) {
+            const currentButton = buttons[i];
+            currentButton.disabled = true;
+            if (currentButton === btn) {
+                const correct = currentButton.getAttribute('data-correct-answer');
+                if (correct) {
+                    currentButton.style.background = "yellow";
+                } else {
+                    currentButton.style.background = "purple";
+                }
+            }
+        }
+
+        const answers = question.querySelectorAll('.answerParent');
+
+        let totalResult = true;
+        for (let i=0; i<answers.length; i++) {
+            if (answers[i].isCorrect === undefined) {
+                return; // не на все вопросы был дан ответ, не увеличиваем счетчик
+            }
+            totalResult = totalResult && answers[i].isCorrect;
+        }
+        
+        if (totalResult) {
             correctAnswers++;
             // info.innerHTML = "верно";
             playAudio();
         } else {
             incorrectAnswers++;
-            btn.style.background = "purple";
             // info.innerHTML = "неверно";
             playFalseAudio();
         }
@@ -352,22 +384,12 @@ function main() {
         // }, 3000);
         // info.timeoutid = id;
 
-        const buttons = getParentWithClassName(btn, 'question').querySelectorAll('button');
+        
 
-        for (let i = 0; i < buttons.length; i++) {
-            const btn = buttons[i];
-            btn.disabled = true;
-            const correct = btn.getAttribute('data-correct-answer');
-            if (correct) {
-                btn.style.background = "yellow";
-            }
-        }
-
-        const picture = getParentWithClassName(btn, 'question').querySelector('.pictureAnswer');
-        if (result) {
+        const picture = question.querySelector('.pictureAnswer');
+        if (totalResult) {
             picture.classList.add('correct');
-        }
-        else {
+        } else {
             picture.classList.add('incorrect');
         }
 
@@ -394,11 +416,11 @@ function main() {
 
         for (let i=0; i<maxQuestions; i++) {
             if (data.length >= questionsData.length) break;
-            const idx = Math.floor(Math.random() * questionsData.length);
-            if (data.includes(questionsData[idx])) {
+            const index = Math.floor(Math.random() * questionsData.length);
+            if (data.includes(questionsData[index])) {
                 i--;
             } else {
-                data.push(questionsData[idx]);
+                data.push(questionsData[index]);
             }
         }
         countQuestions = data.length;
@@ -408,11 +430,13 @@ function main() {
             const question = document.createElement('div');
             question.classList.add('question');
 
-            const counterDiv = document.createElement('div');
-            counterDiv.classList.add('questionCounter');
-            counterDiv.innerText = i + 1;
-            
-            question.appendChild(counterDiv);
+            {
+                const counterDiv = document.createElement('div');
+                counterDiv.classList.add('questionCounter');
+                counterDiv.innerText = i + 1;
+                
+                question.appendChild(counterDiv);
+            }
 
             for (let j=0; j<data[i].options.length; j++) {
                 if (!data[i].options[j].html) continue;
@@ -421,15 +445,29 @@ function main() {
                 option.innerHTML = data[i].options[j].html;
                 option.classList.add("answerParent");
 
-                const btn = document.createElement('button');
-                btn.addEventListener('click', onButtonClick);
+                const yesButton = document.createElement('button');
+                yesButton.addEventListener('click', onButtonClick);
                 if (data[i].options[j].correctAnswer) {
-                    btn.setAttribute('data-correct-answer', "true");
+                    yesButton.setAttribute('data-correct-answer', "true");
                 }
-                btn.innerText = 'Ответить';
-                btn.classList.add('questionButton');
+                yesButton.innerText = 'Да';
+                yesButton.classList.add('questionButton');
+                yesButton.classList.add('yesButton');
                 
-                option.appendChild(btn);
+                option.appendChild(yesButton);
+
+                //
+
+                const noButton = document.createElement('button');
+                noButton.addEventListener('click', onButtonClick);
+                if (!data[i].options[j].correctAnswer) {
+                    noButton.setAttribute('data-correct-answer', "true");
+                }
+                noButton.innerText = 'Нет';
+                noButton.classList.add('questionButton');
+                noButton.classList.add('noButton');
+                
+                option.appendChild(noButton);
 
                 question.appendChild(option);
             }
