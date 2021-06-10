@@ -192,6 +192,20 @@
     .question {
         overflow: hidden;
     }
+    #k {
+        width: 420px;
+        height: 420px;
+        position: fixed;
+        top: 30%;
+        left: 40%;
+        margin-top: -0.625em;
+        border: 1px solid black;
+        text-align: center;
+        display: none;
+        padding-top: 5%;
+        background-color: rgb(52, 202, 115), 255, 223);
+        
+    }
 </style>
 <script>
 const questionsData = [
@@ -294,10 +308,13 @@ function main() {
     const maxQuestions = 10;
 
     function playAudio() {
-        let audio=new Audio();
-        //audio.src="https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3";
-        audio.src="рп верный ответ.mp3";
-        audio.play();
+        return new Promise (function(resolve, reject){
+            let audio=new Audio();
+            //audio.src="https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3";
+            audio.src="рп верный ответ.mp3";
+            audio.play();
+            audio.addEventListener('ended', resolve);
+        }) 
     }
     function playFalseAudio() {
         let falseAudio=new Audio();
@@ -376,13 +393,14 @@ function main() {
         if (totalResult) {
             correctAnswers++;
             // info.innerHTML = "верно";
-            playAudio();
+            playAudio().then(function f() {
+                document.getElementById('k').style.display="block";
+            });
         } else {
             incorrectAnswers++;
             // info.innerHTML = "неверно";
             playFalseAudio();
         }
-
         // clearInterval(info.timeoutid);
         // const id = setTimeout(() => {
         //     info.innerHTML = "1";
@@ -399,8 +417,10 @@ function main() {
         }
 
         update();
+
     }
 
+   
     function getMark() {
         // 90%+ - 5
         // 75%+ - 4
@@ -476,6 +496,7 @@ function main() {
 
                 question.appendChild(option);
             }
+        
             //🐰
             const pictureAnswer = document.createElement('div');
             pictureAnswer.classList.add('pictureAnswer');
@@ -532,4 +553,5 @@ document.addEventListener('DOMContentLoaded', main);
     <div id="markContainer">
         <div id="mark"></div>
     </div>
+    <div id="k"></div>
 </body>
