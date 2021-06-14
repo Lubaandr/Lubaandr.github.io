@@ -215,11 +215,11 @@
 <script>
 const questionsData = [
     { options: [
-        {correctAnswer: false, html: `<video poster="круг для фона.png" controls><source src="мсв1.1.mp4"></video>`},
+        {correctAnswer: false, html: `<video poster="круг2.jpg" controls><source src="мсв1.1.mp4"></video>`},
         {correctAnswer: true, html: `<video poster="круг для фона.png" controls><source src="мсв1.2.mp4"></video>`},
     ], },
     { options: [
-        {correctAnswer: false, html: `<video poster="круг для фона.png" controls><source src="мсв2.1.mp4"></video>`},
+        {correctAnswer: false, html: `<video poster="круг1.jpg" controls><source src="мсв2.1.mp4"></video>`},
         {correctAnswer: true, html: `<video poster="круг для фона.png" controls><source src="мсв2.2.mp4"></video>`},
     ], }, 
    { options: [
@@ -400,6 +400,7 @@ function main() {
             // info.innerHTML = "верно";
             playAudio().then(function f() {
                 document.getElementById('k').style.display="block";
+                //document.getElementById('k').style.video="autoplay";
             });
         } else {
             incorrectAnswers++;
@@ -559,7 +560,7 @@ document.addEventListener('DOMContentLoaded', main);
         <div id="mark"></div>
     </div>
     <div id="k">
-        <video  controls="controls" autoplay="true">
+        <video  controls="controls">
             <source src="полная версия пантеры.mp4">
            </video>
     </div>
