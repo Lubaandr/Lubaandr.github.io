@@ -105,15 +105,13 @@
         display: inline-block;
         position: relative;
         left: 45%;
-        transform: translate(-50%, 0);
+        padding: 0 16px;
         margin-top: 2%;
         margin-bottom: 2%;
-        width: 110px;
         background-color: aquamarine;
         border-radius: 12px;
         background-image: url(ц.jpg);
         font-size: 23px;
-        width: 50px;
     }
    
   
@@ -134,95 +132,38 @@
         text-align: center;
         background-color: antiquewhite;
     }
-    .my_boks {
-    position: relative;
-    width: 100%;
-    display: block;
-    margin: 0 auto;
-    padding: 0;
-    text-align: center;
-}
-.my_boks1 {
-	margin: 10px;
-	padding: 20px 10px;
-	width: 100px;
-    height: 100px;
-	display: inline-block;
-    background:url("ж1.png");
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-}
-.my_boks2 {
-	margin: 10px;
-	padding: 20px 10px;
-	width: 100px;
-    height: 100px;
-	display: inline-block;
-    background:url("ж2.png");
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-}
-.my_boks3 {
-	margin: 10px;
-	padding: 20px 10px;
-	width: 100px;
-    height: 100px;
-	display: inline-block;
-    background:url("ж3.png");
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-}
-.my_boks4 {
-	margin: 10px;
-	padding: 20px 10px;
-	width: 100px;
-    height: 100px;
-	display: inline-block;
-    background:url("ж4.png");
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-}
-.my_boks5 {
-	margin: 10px;
-	padding: 20px 10px;
-	width: 100px;
-    height: 100px;
-	display: inline-block;
-    background:url("ж5.png");
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-}
-.my_boks6 {
-	margin: 10px;
-	padding: 20px 10px;
-	width: 100px;
-    height: 100px;
-	display: inline-block;
-    background:url("ж6.png");
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-}
-.my_boks7 {
-	margin: 10px;
-	padding: 20px 10px;
-	width: 100px;
-    height: 100px;
-	display: inline-block;
-    background:url("ж7.png");
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-}
-.my_boks8 {
-	margin: 10px;
-	padding: 20px 10px;
-	width: 100px;
-    height: 100px;
-	display: inline-block;
-    background:url("ж8.png");
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-}
-.my_boks9 {
-	margin: 10px;
-	padding: 20px 10px;
-	width: 100px;
-    height: 100px;
-	display: inline-block;
-    background:url("ж9.png");
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-}
+    #questions_links {
+        position: relative;
+        text-align: center;
+        user-select: none;
+    }
+    .question_link {
+        position: relative;
+        margin: 10px;
+        width: 100px;
+        height: 100px;
+        display: inline-block;
+        /* box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22); */
+        filter: drop-shadow(2px 4px 6px black);
+        background: url('note.svg');
+        background-size: 100% 100%;
+        font-size: 26px;
+        color: magenta;
+        font-weight: bold;
+        cursor: pointer;
+        opacity: 0.5;
+        transition: opacity 0.5s ease-out;
+    }
+    .question_link.active {
+        opacity: 1;
+    }
+    .question_link > b {
+        position: absolute;
+        bottom: 3%;
+        left: 15%;
+        text-align: center;
+        width: 40%;
+    }
     #markContainer {
         border: 1px solid black;
         height: 500px;
@@ -282,24 +223,23 @@
         overflow: hidden;
     }
     #k {
-                width: 950px;
-                height: 500px;
-                position: fixed;
-                top: 30%;
-                left: 20%;
-                margin-top: -0.625em;
-                
-                text-align: center;
-                display: none;
-                padding-top: 5%;
-                background-color: rgb(52, 202, 115), 255, 223);
-              
-            }
-            #k > video {
-                border-radius: 0%;
-                width: 100%;
-                height: 100%;
-            }
+        width: 950px;
+        height: 500px;
+        position: fixed;
+        top: 30%;
+        left: 20%;
+        margin-top: -0.625em;
+        
+        text-align: center;
+        display: none;
+        padding-top: 5%;
+        /*background-color: rgb(52, 202, 115);*/
+    }
+    #k > video {
+        border-radius: 0%;
+        width: 100%;
+        height: 100%;
+    }
 </style>
 <script>
 const questionsData = [
@@ -308,7 +248,7 @@ const questionsData = [
         {correctAnswer: true, html: `<video poster="круг2.jpg" controls><source src="мсв1.2.mp4"></video>`},
     ], },
     { options: [
-        {correctAnswer: false, html: `<video poster="круг2.jpg" controls><source src="мсв2.1.mp4"></video>`},
+        {correctAnswer: null, html: `<video poster="круг2.jpg" controls><source src="мсв2.1.mp4"></video>`},
         {correctAnswer: true, html: `<video poster="круг2.jpg" controls><source src="мсв2.2.mp4"></video>`},
     ], }, 
    { options: [
@@ -484,17 +424,22 @@ function main() {
             totalResult = totalResult && answers[i].isCorrect;
         }
         
+        const questionIndex = Array.from(question.parentElement.children).indexOf(question);
+        const questions_links = document.getElementById('questions_links');
+        const question_link = questions_links.children[questionIndex];
         if (totalResult) {
             correctAnswers++;
             // info.innerHTML = "верно";
             playAudio().then(function f() {
                 document.getElementById('k').style.display="block";
-                //document.getElementById('k').style.video="autoplay";
+                document.getElementById('k').querySelector('video').play();
             });
+            question_link.querySelector('b').innerText = '✔';
         } else {
             incorrectAnswers++;
             // info.innerHTML = "неверно";
             playFalseAudio();
+            question_link.querySelector('b').innerText = '❌';
         }
         // clearInterval(info.timeoutid);
         // const id = setTimeout(() => {
@@ -544,7 +489,8 @@ function main() {
             }
         }
         countQuestions = data.length;
-        
+        const questions_links = document.getElementById("questions_links");
+
 
         for (let i=0; i<data.length; i++) {
             const question = document.createElement('div');
@@ -567,28 +513,37 @@ function main() {
 
                 const yesButton = document.createElement('button');
                 yesButton.addEventListener('click', onButtonClick);
-                if (data[i].options[j].correctAnswer) {
+                if (data[i].options[j].correctAnswer === true) {
                     yesButton.setAttribute('data-correct-answer', "true");
                 }
                 yesButton.innerText = '1';
                 yesButton.classList.add('questionButton');
                 yesButton.classList.add('yesButton');
-                
                 option.appendChild(yesButton);
 
                 //
 
                 const noButton = document.createElement('button');
                 noButton.addEventListener('click', onButtonClick);
-                if (!data[i].options[j].correctAnswer) {
+                if (data[i].options[j].correctAnswer === false) {
                     noButton.setAttribute('data-correct-answer', "true");
                 }
                 noButton.innerText = '2';
                 noButton.classList.add('questionButton');
                 noButton.classList.add('noButton');
-                
                 option.appendChild(noButton);
 
+                /*
+                const thirdButton = document.createElement('button');
+                thirdButton.addEventListener('click', onButtonClick);
+                if (data[i].options[j].correctAnswer === null) {
+                    thirdButton.setAttribute('data-correct-answer', "true");
+                }
+                thirdButton.innerText = 'Нет ответа';
+                thirdButton.classList.add('questionButton');
+                thirdButton.classList.add('thirdButton');
+                option.appendChild(thirdButton);
+                */
                 question.appendChild(option);
             }
         
@@ -598,7 +553,26 @@ function main() {
             question.appendChild(pictureAnswer);
 
             questions.appendChild(question);
+
+            const question_link = document.createElement('div');
+            question_link.classList.add('question_link');
+            question_link.innerHTML = '<b>'+ (i + 1) +'</b>';
+            questions_links.appendChild(question_link);
+            question_link.addEventListener("click", function() {
+                for(let counter=0; counter<questions.children.length; counter++) {
+                    questions.children[counter].style.display="none";
+                    questions_links.children[counter].classList.remove("active");
+                }
+                question.style.display="block";
+                question_link.classList.add("active");
+            });
         }
+        for(let counter=0; counter<questions.children.length; counter++) {
+            questions.children[counter].style.display="none";
+            questions_links.children[counter].classList.remove("active");
+        }
+        questions.children[0].style.display="block";
+        questions_links.children[0].classList.add("active");
         update();
     }
 
@@ -630,18 +604,7 @@ document.addEventListener('DOMContentLoaded', main);
     <!--div id="trueBlock">Верно: </div-->
     <!--div id="falseBlock">Неверно: </div-->
     <!--div id="info"></div-->
-    <div class="my_boks">
-        <div class="my_boks1"></div>
-        <div class="my_boks2"></div>
-        <div class="my_boks3"></div>
-        <div class="my_boks4"></div>
-        <div class="my_boks5"></div>
-        <div class="my_boks6"></div>
-        <div class="my_boks7"></div>
-        <div class="my_boks8"></div>
-        <div class="my_boks9"></div>
-
-      </div>
+    <div id="questions_links"></div>
    <div class="correctAnswersParent">Верно: <span id="correctAnswers"></span></div>
     <div class="incorrectAnswersParent">Неверно: <span id="incorrectAnswers"></span></div> 
     <div class="task"><b></b>
@@ -663,6 +626,6 @@ document.addEventListener('DOMContentLoaded', main);
     <div id="k">
         <video  controls="controls">
             <source src="полная версия пантеры.mp4">
-           </video>
+        </video>
     </div>
 </body>
